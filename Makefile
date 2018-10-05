@@ -1,8 +1,8 @@
 CPP_FILES := $(wildcard src/*.c)
 OBJ_FILES := $(addprefix obj/,$(notdir $(CPP_FILES:.c=.o)))
-LD_FLAGS := -mmmx \
+LD_FLAGS := -lm -mmmx \
 -msse -msse2 -msse3 -malign-double -m64 -ftree-vectorize -ftree-vectorizer-verbose=2
-CC_FLAGS := -mmmx \
+CC_FLAGS := -lm -mmmx \
 -msse -msse2 -msse3 -malign-double -m64 -ftree-vectorize -ftree-vectorizer-verbose=2
 
 #all: LD_FLAGS += -DOPT_NSGA2
