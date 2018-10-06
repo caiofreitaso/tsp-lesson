@@ -6,17 +6,17 @@ const int SIZE = 10;
 
 int main() {
   Solution a,b;
-  Matrix distances;
 
+  printf("Solution\n");
   Solution_init(&a, SIZE);
-  printf("Solution initialized\n");
+  printf("  Solution initialized\n");
 
   int i;
   for (i = 0; i < SIZE; i++) a[i] = 2;
-  printf("Solution assigned\n");
+  printf("  Solution assigned\n");
 
   Solution_copy(&b, a, SIZE);
-  printf("Solution copied\n");
+  printf("  Solution copied\n");
 
   int all = 1;
   for (i = 0; i < SIZE; i++)
@@ -25,16 +25,18 @@ int main() {
       break;
     }
   assert(all == 1);
-  printf("Copy verified\n");
+  printf("  Copy verified\n");
 
+  printf("Matrix\n");
+  Matrix distances;
   Matrix_init(&distances, SIZE);
-  printf("Matrix initialized\n");
+  printf("  Matrix initialized\n");
 
   int j;
   for (i = 0; i < SIZE; i++)
     for (j = 0; j < SIZE; j++)
       distances[i][j] = 2;
-  printf("Matrix assigned\n");
+  printf("  Matrix assigned\n");
 
   return 0;
 }

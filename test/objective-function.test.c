@@ -21,11 +21,11 @@ int main() {
   distances[0][4] = 4; distances[1][4] = 2; distances[2][4] = 3; distances[3][4] = 3; distances[4][4] = 0;
 
   int presentation[] = { 0, 1, 4, 2, 3 };
+
+  printf("Objective Function\n");
   int value = objective_function(distances, presentation, SIZE);
-
-  printf("%d\n",value);
-
   assert(value == 10);
+  printf("  Sample case OK\n");
 
   return 0;
 }

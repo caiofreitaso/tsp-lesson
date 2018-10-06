@@ -23,4 +23,5 @@ int main() {
   assert(only_valid_elements(valid, SIZE) == 1);
   printf("  only_valid_elements OK\n");
 
+  return 0;
 }

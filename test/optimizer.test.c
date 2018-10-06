@@ -8,27 +8,6 @@ int main() {
   Solution a;
   Solution_init(&a, SIZE);
 
-  printf("Base Construction\n");
-  base_construction(&a, SIZE, 0);
-  int i, valid = 1;
-  for (i = 0; i < SIZE; i++)
-    if (a[i] != 0) {
-      valid = 0;
-      break;
-    }
-  assert(valid == 1);
-  printf("  0 OK\n");
-
-  base_construction(&a, SIZE, pow(SIZE,SIZE)-1);
-  valid = 1;
-  for (i = 0; i < SIZE; i++)
-    if (a[i] != SIZE-1) {
-      valid = 0;
-      break;
-    }
-  assert(valid == 1);
-  printf("  Max number OK\n");
-
   Matrix distance;
   Matrix_init(&distance, SIZE);
   distance[0][0] = distance[1][1] = distance[2][2] = distance[3][3];
@@ -41,21 +20,32 @@ int main() {
 
   Solution b;
   Solution_init(&b, SIZE);
-
-  for (i = 0; i < SIZE; i++) a[i] = i;
-  b[0] = 0; b[1] = 2; b[2] = 1; b[3] = 3;
+  int value = 45;
+  int i, valid;
 
   printf("Update Best\n");
-  update_best(&a, b, distance, SIZE);
+  for (i = 0; i < SIZE; i++) a[i] = i;
+  b[0] = 0; b[1] = 2; b[2] = 1; b[3] = 3;
+  update_best(&a, &value, b, distance, SIZE);
   valid = 1;
   for (i = 0; i < SIZE; i++) valid &= a[i] == b[i];
   assert(valid == 1);
-  printf("  Changed to the best OK\n");
+  printf("  Changed to the best (with value) OK\n");
+
+  for (i = 0; i < SIZE; i++) a[i] = 0;
+  b[0] = 0; b[1] = 2; b[2] = 1; b[3] = 3;
+  value = 0;
+  update_best(&a, &value, b, distance, SIZE);
+  valid = 1;
+  for (i = 0; i < SIZE; i++) valid &= a[i] == b[i];
+  assert(valid == 1);
+  printf("  Changed to the best (no value) OK\n");
 
   for (i = 0; i < SIZE; i++) a[i] = i;
   Solution previous;
   Solution_copy(&previous, a, SIZE);
-  update_best(&b, a, distance, SIZE);
+  value = 10;
+  update_best(&b, &value, a, distance, SIZE);
   valid = 1;
   for (i = 0; i < SIZE; i++) valid &= a[i] == previous[i];
   assert(valid == 1);
