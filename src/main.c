@@ -48,5 +48,7 @@ int main(int argc, char const* argv[]) {
   printf("Value: %d\n", output.best_value);
   printf("Time: %f s\n", output.seconds);
 
+  Matrix_free(distance, size);
+  Solution_free(output.best);
   return 0;
 }

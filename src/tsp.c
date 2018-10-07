@@ -18,3 +18,14 @@ void Solution_copy(Solution* this, Solution origin, int size) {
   Solution_init(this, size);
   memcpy(*this, origin, size * sizeof(int));
 }
+
+void Solution_free(Solution this) {
+  free(this);
+}
+
+void Matrix_free(Matrix this, int size) {
+  int i;
+  for (i = 0; i < size; i++)
+    free(this[i]);
+  free(this);
+}
