@@ -5,6 +5,7 @@
 
 int is_valid(Solution this, int size);
 
+
 void branch(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size, int i);
 void leaf(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size);
 void recursive(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size, int i);
