@@ -12,9 +12,9 @@ typedef struct {
   float seconds;
 } OptimizerOutput;
 
-typedef void (*optimizer_method)(Solution*, int*, Solution*, Matrix, int, int);
+typedef void (*optimizer_method)(OptimizerOutput*, Solution*, Matrix, int, int);
 
-void update_best(Solution* this, int* current_value, Solution target, Matrix distance, int size);
+void update_best(OptimizerOutput* this, Solution target, Matrix distance, int size);
 OptimizerOutput optimizer(Matrix distance, int size, optimizer_method method);
 
 #endif
