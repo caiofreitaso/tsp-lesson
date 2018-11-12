@@ -44,11 +44,11 @@ int main(int argc, char const* argv[]) {
 
   OptimizerOutput output = optimizer(distance, size, recursive);
 
-  print_solution(output.best, size);
-  printf("Value: %d\n", output.best_value);
+  print_solution(output.path, size);
+  printf("Value: %d\n", output.value);
   printf("Time: %f s\n", output.seconds);
 
   Matrix_free(distance, size);
-  Solution_free(output.best);
+  Solution_free(output.path);
   return 0;
 }
