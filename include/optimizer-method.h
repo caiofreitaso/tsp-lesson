@@ -5,8 +5,8 @@
 
 int is_valid(Solution this, int size);
 
-void branch(OptimizerOutput* best, Solution* current, Matrix distance, int size, int i);
-void leaf(OptimizerOutput* best, Solution* current, Matrix distance, int size);
-void recursive(OptimizerOutput* best, Solution* current, Matrix distance, int size, int i);
+void branch(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size, int i);
+void leaf(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size);
+void recursive(OptimizerOutput* best, OptimizerOutput* current, Matrix distance, int size, int i);
 
 #endif

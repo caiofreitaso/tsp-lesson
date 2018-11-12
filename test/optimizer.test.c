@@ -5,8 +5,8 @@
 const int SIZE = 4;
 
 int main() {
-  Solution a;
-  Solution_init(&a, SIZE);
+  OptimizerOutput a;
+  OptimizerOutput_init(&a, SIZE);
 
   Matrix distance;
   Matrix_init(&distance, SIZE);
@@ -18,36 +18,36 @@ int main() {
   distance[1][3] = distance[3][1] = 16;
   distance[2][3] = distance[3][2] = 32;
 
-  Solution b;
-  Solution_init(&b, SIZE);
-  int value = 45;
+  OptimizerOutput b;
+  OptimizerOutput_init(&b, SIZE);
   int i, valid;
 
   printf("Update Best\n");
-  for (i = 0; i < SIZE; i++) a[i] = i;
-  b[0] = 0; b[1] = 2; b[2] = 1; b[3] = 3;
-  update_best(&a, &value, b, distance, SIZE);
+  a.value = 45;
+  for (i = 0; i < SIZE; i++) a.path[i] = i;
+  b.path[0] = 0; b.path[1] = 2; b.path[2] = 1; b.path[3] = 3;
+  update_best(&a, b, distance, SIZE);
   valid = 1;
-  for (i = 0; i < SIZE; i++) valid &= a[i] == b[i];
+  for (i = 0; i < SIZE; i++) valid &= a.path[i] == b.path[i];
   assert(valid == 1);
   printf("  Changed to the best (with value) OK\n");
 
-  for (i = 0; i < SIZE; i++) a[i] = 0;
-  b[0] = 0; b[1] = 2; b[2] = 1; b[3] = 3;
-  value = 0;
-  update_best(&a, &value, b, distance, SIZE);
+  a.value = 0;
+  for (i = 0; i < SIZE; i++) a.path[i] = 0;
+  b.path[0] = 0; b.path[1] = 2; b.path[2] = 1; b.path[3] = 3;
+  update_best(&a, b, distance, SIZE);
   valid = 1;
-  for (i = 0; i < SIZE; i++) valid &= a[i] == b[i];
+  for (i = 0; i < SIZE; i++) valid &= a.path[i] == b.path[i];
   assert(valid == 1);
   printf("  Changed to the best (no value) OK\n");
 
-  for (i = 0; i < SIZE; i++) a[i] = i;
+  for (i = 0; i < SIZE; i++) a.path[i] = i;
   Solution previous;
-  Solution_copy(&previous, a, SIZE);
-  value = 10;
-  update_best(&b, &value, a, distance, SIZE);
+  Solution_copy(&previous, a.path, SIZE);
+  a.value = 10;
+  update_best(&b, a, distance, SIZE);
   valid = 1;
-  for (i = 0; i < SIZE; i++) valid &= a[i] == previous[i];
+  for (i = 0; i < SIZE; i++) valid &= a.path[i] == previous[i];
   assert(valid == 1);
   printf("  Did not change to the worst OK\n");
 

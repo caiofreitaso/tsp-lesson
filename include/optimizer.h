@@ -6,15 +6,17 @@
 #include <time.h>
 
 typedef struct {
-  Solution best;
-  int best_value;
+  Solution path;
+  int value;
   clock_t clocks_used;
   float seconds;
 } OptimizerOutput;
 
-typedef void (*optimizer_method)(OptimizerOutput*, Solution*, Matrix, int, int);
+void OptimizerOutput_init(OptimizerOutput* this, int size);
 
-void update_best(OptimizerOutput* this, Solution target, Matrix distance, int size);
+typedef void (*optimizer_method)(OptimizerOutput*, OptimizerOutput*, Matrix, int, int);
+
+void update_best(OptimizerOutput* this, OptimizerOutput target, Matrix distance, int size);
 OptimizerOutput optimizer(Matrix distance, int size, optimizer_method method);
 
 #endif
